@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -70,6 +71,7 @@ const Register = () => {
           required
         />
         <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded font-medium">Register</button>
+        <small>Already Registered? <Link to='/' className='text-blue-600 underline'>Login</Link></small>
       </form>
     </div>
   );
