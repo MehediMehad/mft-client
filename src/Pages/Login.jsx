@@ -5,6 +5,8 @@ const Login = () => {
         <div>
             Log in page
             <Link to='registration'>Registration</Link>
+            <br />
+            <Link to='register'>Register</Link>
         </div>
     );
 };
