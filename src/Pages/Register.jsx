@@ -1,16 +1,23 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 const Register = () => {
   const [name, setName] = useState('');
   const [pin, setPin] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('user');
-
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (pin.length !== 5) {
+      alert('PIN must be exactly 5 digits');
+      return;
+    }
+    // if (phone.length !== 11) {
+    //   toast.error('PIN must be exactly 11 digits');
+    //   return;
+    // }
     try {
       const response = await axios.post('http://localhost:5000/register', {
         name,
@@ -20,6 +27,7 @@ const Register = () => {
         role,
       });
       alert(response.data.message);
+      navigate('/')
     } catch (error) {
       alert('Registration failed');
     }
