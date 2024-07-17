@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 const Register = () => {
   const [name, setName] = useState('');
   const [pin, setPin] = useState('');
@@ -11,7 +12,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (pin.length !== 5) {
-      alert('PIN must be exactly 5 digits');
+      toast.error('PIN must be exactly 5 digits');
       return;
     }
     // if (phone.length !== 11) {
@@ -26,15 +27,16 @@ const Register = () => {
         email,
         role,
       });
-      alert(response.data.message);
+      toast.success(response.data.message);
       navigate('/')
     } catch (error) {
-      alert('Registration failed');
+      toast.error('Registration failed');
     }
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
+       <Toaster />
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-96">
         <h2 className="text-3xl mb-4 text-center font-medium"> Welcome to Pocket</h2>
         <select
